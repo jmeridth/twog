@@ -1,0 +1,14 @@
+twog
+
+h1. The twitterfeed killer
+@<hr/>@
+h2. Gems needed
+
+twitter
+
+@<hr/>@
+
+@<hr/>@
+h2. Copyright
+
+Copyright (c) 2010 Jason Meridth. See LICENSE for details.
