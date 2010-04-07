@@ -1,11 +1,11 @@
 Gem::Specification.new do |s| 
   s.name       = "twog"
-  s.version    = "0.1"
+  s.version    = "0.0.1"
   s.author     = "Jason Meridth"
-  s.email      = ""
-  s.homepage   = "https://github.com/armmer/twog"
+  s.email      = "jmeridth@gmail.com"
+  s.homepage   = "http://github.com/armmer/twog"
   s.platform   = Gem::Platform::RUBY
-  s.summary    = "Tool to tweet blog posts, the twitterfeed killer"
+  s.summary    = "Tool to tweet blog posts"
   s.files      = FileList["{bin,lib}/**/*"].exclude("rdoc").to_a
   s.bindir     = "bin"
   s.executables = ["twog"]
