@@ -38,7 +38,12 @@ class TwitterHandler
   end
 
   def use_twitter_oauth(item, link)
-    client = TwitterOAuth::Client.new(:consumer_key => @conf['consumer_key'], :consumer_secret => @conf['consumer_secret'], :token => @conf['access_token'], :secret => @conf['access_secret'])
+    client = TwitterOAuth::Client.new(
+      :consumer_key => @conf['consumer_key'], 
+      :consumer_secret => @conf['consumer_secret'], 
+      :token => @conf['access_token'], 
+      :secret => @conf['access_secret']
+    )
     raise Exception.new('TwitterOAuth unauthorized') unless client.authorized?
     text = ensure_text_is_of_length(140, item.title.content, link)
     client.update(text)
@@ -47,7 +52,7 @@ class TwitterHandler
   def ensure_text_is_of_length(length, title, link)
     blogged = "blogged:"
     title = title[0,(length-((" "*2).length+blogged.length+link.length))]
-    text = "#{blogged} #{title} #{link}"
+    [blogged, title, link].join(' ')
   end
 
   def update_config_file_with_latest_tweet_date(last_blog_post_tweeted)
