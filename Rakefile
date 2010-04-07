@@ -4,9 +4,9 @@ require 'rake/gempackagetask'
   
 
 namespace :conf do
-  desc "Generate conf.yaml file"
+  desc "Generate .twog.yaml file"
   task :create do
-    AUTH_FILE_NAME = File.expand_path(File.dirname(__FILE__) + "/lib/conf.yaml")
+    AUTH_FILE_NAME = "#{ENV['HOME']}/.twog.yaml"
     
     AUTH_CONFIG_FILE = <<-EOS
   rss_feed: 'http://url.com/feed.rss'
@@ -19,7 +19,7 @@ namespace :conf do
   last_blog_post_tweeted:
     EOS
 
-    abort "conf.yaml already exists" if File.exists?(AUTH_FILE_NAME)
+    abort "#{ENV['HOME']}/.twog.yaml already exists" if File.exists?(AUTH_FILE_NAME)
 
     File.open(AUTH_FILE_NAME, 'w') {|f| f.write(AUTH_CONFIG_FILE) } 
   end

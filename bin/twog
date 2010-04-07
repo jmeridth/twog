@@ -3,8 +3,8 @@
 require 'rubygems'
 require 'twog'
 
-raise "please run 'rake gen_config' to create the auth.yaml file" unless File.exists?('conf.yaml')
-conf = YAML.load_file('conf.yaml')
+raise "please run 'rake gen_config' to create the .twog.yaml file" unless File.exists?("#{ENV['HOME']}/.twog.yaml")
+conf = YAML.load_file("#{ENV['HOME']}/.twog.yaml")
 
 twog = Twog.new(RssParser.new(conf), 
   BlogPostsHandler.new(conf), 
