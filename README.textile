@@ -13,7 +13,7 @@ One you have those, run the rake command:
 
 bq. rake generate_config
 
-and an .twog.yaml file will be created in the lib folder.  Fill it out.
+and a hidden configuration file will be created in the your home folder (~/.twog.yaml).  Once there, please fill it out with the information necessary to use this tool.
 
 h2. Bitly API
 
