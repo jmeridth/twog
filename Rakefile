@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spec/rake/spectask'
+require 'rake/gempackagetask'
+  
 
 namespace :conf do
   desc "Generate conf.yaml file"
@@ -39,8 +41,15 @@ namespace :spec do
   end
 end
 
-desc "Clean out the coverage"
+desc "Build the gem"
+Rake::GemPackageTask.new(Gem::Specification.load("twog.gemspec")) do |pkg|
+    pkg.need_zip = true
+    pkg.need_tar = true
+end
+
+desc "Clean out the coverage and the pkg"
 task :clean do
   rm_rf 'coverage'
+  rm_rf 'pkg'
 end
 
