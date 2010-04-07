@@ -1,8 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../lib/twog")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/twitter_handler")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/bitly_handler")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/rss_parser")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/blog_posts_handler")
+require "lib/twog"
 require 'rss'
 
 module TwogSpecHelper
