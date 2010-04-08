@@ -1,14 +1,40 @@
-twog
+h1. twog
 
-h1. The twitterfeed killer
-@<hr/>@
 h2. Gems needed
 
-twitter
+twitter_oauth
+rss
+bitly (if you want to shorten the URLs)
 
-@<hr/>@
+h2. OAuth
 
-@<hr/>@
+Please read "this":http://blog.jasonmeridth.com/2010/04/02/oauth.html if you want to know how to get your Twitter OAuth consumer key/secret and access token/secret.
+One you have those, run the rake command:
+
+bq. rake generate_config
+
+and an conf.yaml file will be created in the lib folder.  Fill it out.
+
+h2. Bitly API
+
+In order to use Bitly for URL shortening, you'll need to go to http://bit.ly and click the "Sign Up":http://bit.ly/account/register?rd=/ link on the top right and get an account.  Once you are logged-in you click the "Account":http://bit.ly/account link in the same top right area.  You will see your API Key in the middle of the page.
+
+Put your bit.ly username and api key into the conf.yaml file to be used in the code.
+
+h2. cron
+
+The idea is to setup cron to run the lib/run_twog.sh script.
+
+"Crontab HowTo":http://www.unixgeeks.org/security/newbie/unix/cron-1.html
+
+For example, I run 'crontab -e' and this lets me edit my user's crontab file and I put the following:
+
+bq. */15 * * * * jmeridth /Users/jasonmeridth/code/ruby/twog/lib/run_twog.sh
+
+h2. TODO
+
+Please check the TODO file for items that are to be done in the near future.
+
 h2. Copyright
 
 Copyright (c) 2010 Jason Meridth. See LICENSE for details.
