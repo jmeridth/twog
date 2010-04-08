@@ -5,16 +5,19 @@ $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 require 'twog'
 require 'optparse'
 
-help = <<HELP
-Twog is a tool to tweet blog posts.
+options = {}
+opts = OptionParser.new do |opts|
+  opts.banner = "Twog is a tool to tweet blog posts"
 
-  Commands:
-    --version     shows the current version
-    --help        shows this information
-
-  Configuration is read from your home directory in the file '.twog.yaml'
+  opts.on("--version", "Display current version") do
+    puts "Twog " + Twog.version
+    exit 0
+  end
   
-  SAMPLE twog.yaml:
+  opts.on("--conf", "Create default conf file") do
+    AUTH_FILE_NAME = "#{ENV['HOME']}/.twog.yaml"
+    
+    AUTH_CONFIG_FILE = <<-EOS
   rss_feed: 'http://url.com/feed.rss'
   consumer_key: 'consumer key'
   consumer_secret: 'consumer secret'
@@ -23,15 +26,15 @@ Twog is a tool to tweet blog posts.
   bitly_username: 'username'
   bitly_api_key: 'api key'
   last_blog_post_tweeted:
+    EOS
 
-HELP
+    if File.exists?(AUTH_FILE_NAME)
+      puts "#{ENV['HOME']}/.twog.yaml already exists"     
+      exit 0     
+    end
 
-options = {}
-opts = OptionParser.new do |opts|
-  opts.banner = help
-
-  opts.on("--version", "Display current version") do
-    puts "Twog " + Twog.version
+    File.open(AUTH_FILE_NAME, 'w') {|f| f.write(AUTH_CONFIG_FILE) } 
+    puts "Default configuration file created at ~/.twog.yaml"
     exit 0
   end
 end
@@ -40,13 +43,12 @@ end
 opts.parse!
 
 # Get args from the command line
-case ARGV.size
-  when > 0
-    puts "Invalid options. Run `twog --help` for assistance."
-    exit(1)
+if ARGV.size > 1
+  puts "Invalid options. Run `twog --help` for assistance."
+  exit(1)
 end
 
-raise "please run 'rake twog:conf_create' to create the ~/.twog.yaml file" unless File.exists?("#{ENV['HOME']}/.twog.yaml")
+raise "please run 'twog --conf' to create the ~/.twog.yaml file" unless File.exists?("#{ENV['HOME']}/.twog.yaml")
 conf = YAML.load_file("#{ENV['HOME']}/.twog.yaml")
 
 Twog.run(conf)

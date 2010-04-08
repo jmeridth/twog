@@ -4,26 +4,6 @@ require 'rake/gempackagetask'
   
 
 namespace :twog do
-  desc "Generate .twog.yaml file"
-  task :conf_create do
-    AUTH_FILE_NAME = "#{ENV['HOME']}/.twog.yaml"
-    
-    AUTH_CONFIG_FILE = <<-EOS
-  rss_feed: 'http://url.com/feed.rss'
-  consumer_key: 'consumer key'
-  consumer_secret: 'consumer secret'
-  access_token: 'access token'
-  access_secret: 'access secret'
-  bitly_username: 'username'
-  bitly_api_key: 'api key'
-  last_blog_post_tweeted:
-    EOS
-
-    abort "#{ENV['HOME']}/.twog.yaml already exists" if File.exists?(AUTH_FILE_NAME)
-
-    File.open(AUTH_FILE_NAME, 'w') {|f| f.write(AUTH_CONFIG_FILE) } 
-  end
-  
   desc "Clean out the coverage and the pkg"
   task :clean do
     rm_rf 'coverage'
