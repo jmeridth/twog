@@ -7,9 +7,9 @@ sudo gem install twog
 h2. OAuth
 
 Please read "this":http://blog.jasonmeridth.com/2010/04/02/oauth.html if you want to know how to get your Twitter OAuth consumer key/secret and access token/secret.
-One you have those, run the rake command:
+One you have those, run the command:
 
-bq. rake generate_config
+bq. twog --conf
 
 and a hidden configuration file will be created in the your home folder (~/.twog.yaml).  Once there, please fill it out with the information necessary to use this tool.
 

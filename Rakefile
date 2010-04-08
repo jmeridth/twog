@@ -33,10 +33,10 @@ begin
   Jeweler::Tasks.new do |s|
     s.name = "twog"
     s.summary = %Q{Tool to tweet blog posts}
-    s.email = "jmeridth@gmail.com"
+    s.email = ["jmeridth@gmail.com", "agilejoe@gmail.com"]
     s.homepage = "http://github.com/armmer/twog"
     s.description = "Tool to tweet blog posts"
-    s.authors = ["Jason Meridth"]
+    s.authors = ["Jason Meridth", "Joe Ocampo"]
     s.rubyforge_project = "twog"
     s.add_dependency('twitter_oauth', '>= 0.3.3')
     s.add_dependency('bitly', '>= 0.4.0')
