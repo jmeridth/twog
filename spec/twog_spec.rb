@@ -3,27 +3,38 @@ require File.dirname(__FILE__) + "/spec_helper"
 describe Twog do 
   include TwogSpecHelper
 
-
   it "should not tweet if there are no new blog posts" do
-    rss_parser = mock('rss_parser')
-    blog_handler = mock('blog_handler')
-    twitter_handler = mock('twitter_handler')
-    @twog = Twog.new(rss_parser, blog_handler, twitter_handler)
-    rss_parser.should_receive(:parse).once.and_return([])
-    blog_handler.should_not_receive(:get_blog_posts)
-    twitter_handler.should_not_receive(:tweet)
-    @twog.run
+    Twog.stub!(:parse).with(test_conf['rss_feed']).and_return(1)
+    Twog.stub!(:get_new_blog_posts).with(1, test_conf['last_blog_post_tweeted']).and_return([])
+    Twog.stub!(:tweet).and_return(1)
+    result = Twog.run(test_conf)
+    result.should be nil
   end
   
   it "should parse the rss feed and tweet new blog posts" do
-    posts = [mock('post', :title => 'title', :date => Time.new, :link => 'http://tinyurl')]
-    rss_parser = mock('rss_parser')
-    blog_handler = mock('blog_handler')
-    twitter_handler = mock('twitter_handler')
-    @twog = Twog.new(rss_parser, blog_handler, twitter_handler)
-    rss_parser.should_receive(:parse).once.and_return(posts)
-    blog_handler.should_receive(:get_blog_posts).with(posts).once.and_return(posts)
-    twitter_handler.should_receive(:tweet).with(posts)
-    @twog.run
+    entry = rss_entry
+    Twog.stub!(:parse).with(test_conf['rss_feed']).and_return(1)
+    Twog.stub!(:get_new_blog_posts).with(1, test_conf['last_blog_post_tweeted']).and_return([entry])
+    Twog.stub!(:get_bitly_from)
+    Twog.stub!(:tweet).and_return(1)
+    result = Twog.run(test_conf)
+    result.should == 1
+  end
+
+  it "should return nil if bitly username is nil" do
+    conf = test_conf
+    conf['bitly_username'] = nil
+    Twog.get_bitly_from(conf).should be nil
+  end
+  
+  it "should return nil if bitly api key is nil" do
+    conf = test_conf
+    conf['bitly_username'] = nil
+    Twog.get_bitly_from(conf).should be nil
+  end
+
+  it "should return nil if bitly api key is nil" do
+    Bitly.stub!(:new).and_return("hello")
+    Twog.get_bitly_from(test_conf).should == "hello"
   end
 end
