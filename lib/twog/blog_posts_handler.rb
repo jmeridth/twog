@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'twitter_oauth'
-require 'yaml'
+
 
 module BlogPostsHandler
   def get_new_blog_posts(posts, last_blog_post_tweeted)

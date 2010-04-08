@@ -1,9 +1,3 @@
-require 'rubygems'
-require 'twitter_oauth'
-require 'yaml'
-require 'rss'
-require 'bitly'
-
 class RSS::Atom::Feed::Entry
   def <=>(other_entry)
     this_time = Time.parse(updated.content.to_s)
