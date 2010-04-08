@@ -8,9 +8,13 @@ require 'optparse'
 help = <<HELP
 Twog is a tool to tweet blog posts.
 
+  Commands:
+    --version     shows the current version
+    --help        shows this information
+
   Configuration is read from your home directory in the file '.twog.yaml'
   
-  SAMPLE cong.yaml:
+  SAMPLE twog.yaml:
   rss_feed: 'http://url.com/feed.rss'
   consumer_key: 'consumer key'
   consumer_secret: 'consumer secret'
@@ -27,7 +31,7 @@ opts = OptionParser.new do |opts|
   opts.banner = help
 
   opts.on("--version", "Display current version") do
-    puts "Jekyll " + Twog.version
+    puts "Twog " + Twog.version
     exit 0
   end
 end
