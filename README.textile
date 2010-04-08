@@ -1,10 +1,8 @@
 h1. twog
 
-h2. Gems needed
+h2. Install
 
-twitter_oauth
-rss
-bitly (if you want to shorten the URLs)
+sudo gem install twog
 
 h2. OAuth
 
@@ -19,7 +17,7 @@ h2. Bitly API
 
 In order to use Bitly for URL shortening, you'll need to go to http://bit.ly and click the "Sign Up":http://bit.ly/account/register?rd=/ link on the top right and get an account.  Once you are logged-in you click the "Account":http://bit.ly/account link in the same top right area.  You will see your API Key in the middle of the page.
 
-Put your bit.ly username and api key into the .twog.yaml file to be used in the code.
+Put your bit.ly username and api key into the ~/.twog.yaml file to be used in the code.
 
 h2. cron
 
@@ -29,7 +27,7 @@ The idea is to setup cron to run the bin/twog script.
 
 For example, I run 'crontab -e' and this lets me edit my user's crontab file and I put the following:
 
-bq. */15 * * * * jmeridth /Users/jasonmeridth/code/ruby/twog/lib/run_twog.sh
+bq. */15 * * * * jmeridth twog 
 
 Will be wiring up the cronedit gem later
 
