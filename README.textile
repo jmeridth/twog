@@ -35,6 +35,13 @@ h2. TODO
 
 Please check the TODO file for items that are to be done in the near future.
 
+h2. Technical Reviewers
+
+Chris MacGown ("ChristopherMacGown":http://github.com/ChristopherMacGown)
+Matt Dietz ("cerberus98":http://github.com/cerberus98)
+Paul Voccio ("pvo":http://github.com/pvo)
+Joe Ocampo ("agilejoe":http://github.com/agilejoe)
+
 h2. Copyright
 
 Copyright (c) 2010 Jason Meridth. See LICENSE for details.
