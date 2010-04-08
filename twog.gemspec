@@ -1,8 +1,8 @@
 Gem::Specification.new do |s| 
-  s.name       = "twog"
-  s.version    = "0.0.1"
+  s.name       = %q{twog}
+  s.version    = "0.1.0"
 
-  s.author     = "Jason Meridth"
+  s.authors    = ["Jason Meridth"]
   s.date       = %q{2010-04-08}
   s.email      = %q{jmeridth@gmail.com}
   s.homepage   = %q{http://github.com/armmer/twog}
@@ -15,11 +15,11 @@ Gem::Specification.new do |s|
 
   s.files      = FileList["{bin,lib}/**/*"].exclude("rdoc").to_a
   s.bindir     = "bin"
+  s.default_executable = %q{twog}
   s.executables = ["twog"]
   
   s.require_paths     = ["lib"]
   s.has_rdoc          = false
-
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

@@ -1,8 +1,0 @@
-FEATURES
-
-- create rake tasks to handle creating and deleting cron
-- handle logging of exceptions and completion of tweets
-
-FIXES
-- handle calling of gen_config task from any directory and make sure the .twog.yaml is created in the lib directory
-- get 100% test coverage (run 'rake spec:coverage' and look at the coverage/index.html file to see current %)
