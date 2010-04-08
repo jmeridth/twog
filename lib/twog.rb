@@ -1,5 +1,13 @@
+#rubygems
 require 'rubygems'
+
+# 3rd party
+require 'twitter_oauth'
 require 'yaml'
+require 'rss'
+require 'bitly'
+
+# internal requires
 require 'twog/rss_parser'
 require 'twog/blog_posts_handler'
 require 'twog/twitter_handler'
@@ -23,5 +31,10 @@ class Twog
     bitly_api_key = conf['bitly_api_key']
     return nil unless (bitly_username && bitly_api_key)
     Bitly.new(bitly_username, bitly_api_key)
+  end
+  
+  def self.version
+    yml = YAML.load(File.read(File.join(File.dirname(__FILE__), *%w[.. VERSION.yml])))
+    "#{yml[:major]}.#{yml[:minor]}.#{yml[:patch]}"
   end
 end

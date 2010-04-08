@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'rss'
-
 module RssParser
   def parse(rss_feed_url)
     raise Exception.new('RSS feed missing') unless rss_feed_url
