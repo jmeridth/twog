@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twog}
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Jason Meridth", "Joe Ocampo"]
-  s.date = %q{2010-04-08}
+  s.authors = ["Jason Meridth"]
+  s.date = %q{2010-04-10}
   s.default_executable = %q{twog}
   s.description = %q{Tool to tweet blog posts}
-  s.email = ["jmeridth@gmail.com", "agilejoe@gmail.com"]
+  s.email = ["jmeridth@gmail.com"]
   s.executables = ["twog"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     "History.rdoc",
      "LICENSE",
      "README.textile",
      "Rakefile",
@@ -57,13 +58,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<twitter_oauth>, [">= 0.3.3"])
       s.add_runtime_dependency(%q<bitly>, [">= 0.4.0"])
+      s.add_runtime_dependency(%q<whenever>, [">= 0.4.1"])
     else
       s.add_dependency(%q<twitter_oauth>, [">= 0.3.3"])
       s.add_dependency(%q<bitly>, [">= 0.4.0"])
+      s.add_dependency(%q<whenever>, [">= 0.4.1"])
     end
   else
     s.add_dependency(%q<twitter_oauth>, [">= 0.3.3"])
     s.add_dependency(%q<bitly>, [">= 0.4.0"])
+    s.add_dependency(%q<whenever>, [">= 0.4.1"])
   end
 end
 

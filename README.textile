@@ -11,25 +11,27 @@ One you have those, run the command:
 
 bq. twog --conf
 
-and a hidden configuration file will be created in the your home folder (~/.twog.yaml).  Once there, please fill it out with the information necessary to use this tool.
+and a hidden configuration file will be created in the your home folder (~/.twog/conf.yaml).  Once there, please fill it out with the information necessary to use this tool.
 
 h2. Bitly API
 
 In order to use Bitly for URL shortening, you'll need to go to http://bit.ly and click the "Sign Up":http://bit.ly/account/register?rd=/ link on the top right and get an account.  Once you are logged-in you click the "Account":http://bit.ly/account link in the same top right area.  You will see your API Key in the middle of the page.
 
-Put your bit.ly username and api key into the ~/.twog.yaml file to be used in the code.
+Put your bit.ly username and api key into the ~/.twog/conf.yaml file to be used in the code.
 
 h2. cron
 
-The idea is to setup cron to run the bin/twog script.
+To install twog as a crontab job, run the command:
 
-"Crontab HowTo":http://www.unixgeeks.org/security/newbie/unix/cron-1.html
+bq. twog --cronadd N
 
-For example, I run 'crontab -e' and this lets me edit my user's crontab file and I put the following:
+where N is the number of minutes you want twog to fire off every time.
 
-bq. */15 * * * * jmeridth twog 
+To remove twog as a crontab job, run the command:
 
-Will be wiring up the cronedit gem later
+bq. twog --cronrm
+
+"Crontab Info":http://www.unixgeeks.org/security/newbie/unix/cron-1.html for all my non-*nix bretheren.
 
 h2. TODO
 

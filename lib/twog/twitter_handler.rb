@@ -46,6 +46,6 @@ module TwitterHandler
 
   def update_config_file_with_latest_tweet_date(last_blog_post_tweeted, conf)
     conf['last_blog_post_tweeted'] = last_blog_post_tweeted
-    File.open("#{ENV['HOME']}/.twog.yaml","w") { |out| out.write(conf.to_yaml) }
+    File.open("#{ENV['HOME']}/.twog/conf.yaml","w") { |out| out.write(conf.to_yaml) }
   end
 end

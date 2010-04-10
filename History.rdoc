@@ -1,0 +1,39 @@
+=== Version 0.3.0 / 2010-04-10
+
+* Enhancements
+  * Added binary commands "--cronadd N" and "--cronrm" to install/remove
+  cron job that calls twog every N minutes (added dependency on whenever gem)
+  * added more options to binary commands for help and version (-?,-h,-v)
+
+=== Version 0.2.2 / 2010-04-09
+
+* Bugs
+  * fix README to reference "--conf" binary command instead of legacy rake task
+
+=== Version 0.2.1 / 2010-04-08
+
+* Features
+  * change creating of conf file to a binary option (--conf)  instead of rake task
+
+=== Version 0.2.0 / 2010-04-08
+
+* Features
+  * setup Jeweler to autogenerate gemspec file
+  * pushed gem versions to rubygems.org
+
+=== Version 0.1.0 / 2010-04-07
+
+* Features
+  * Change structure to be more rubyish (modules instead of classes)
+    Due to no state being maintained in application
+
+=== Version 0.0.1 / 2010-04-07
+
+* Features
+  * parses RSS feed
+  * tweets posts that haven't been tweeted
+    (time > blog post time in conf yaml file)
+
+=== Version 0.0.0 / 2010-03-31
+
+* Initial Commit
