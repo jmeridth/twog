@@ -18,6 +18,16 @@ bq. twog --conf
 
 and a hidden configuration file will be created in the your home folder (~/.twog/conf.yaml).  Once there, please fill it out with the information necessary to use this tool.
 
+h2. Seeing What Will Be Tweeted
+
+To see what will be Tweeted before it is, type:
+
+bq. twog -o
+
+or
+
+bq. twog --output
+
 h2. Shortening Blog Post URLs With Bitly API
 
 In order to use Bitly for URL shortening, you'll need to go to http://bit.ly and click the "Sign Up":http://bit.ly/account/register?rd=/ link on the top right and get an account.  Once you are logged-in you click the "Account":http://bit.ly/account link in the same top right area.  You will see your API Key in the middle of the page.
@@ -52,10 +62,10 @@ h2. TODO
 
 Please check the "issues":http://github.com/armmer/twog/issues on Github for future features or bugs that need to be fixed
 
-h2. Technical Reviewers
+h2. Contributors
 
+Matt Dietz ("cerberus98":http://github.com/cerberus98)  special thanks
 Chris MacGown ("ChristopherMacGown":http://github.com/ChristopherMacGown)
-Matt Dietz ("cerberus98":http://github.com/cerberus98)
 Paul Voccio ("pvo":http://github.com/pvo)
 Joe Ocampo ("agilejoe":http://github.com/agilejoe)
 
