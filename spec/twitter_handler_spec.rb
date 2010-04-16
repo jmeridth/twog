@@ -2,12 +2,12 @@ require File.dirname(__FILE__) + "/spec_helper"
 require 'rubygems'
 require 'rss'
 
-describe TwitterHandler do 
+describe Twog::TwitterHandler do 
   include TwogSpecHelper
-  include TwitterHandler
+  include Twog::TwitterHandler
 
   before(:each) do
-    @posts = [rss_entry]
+    @posts = [stub('post', :date => Time.now, :link => 'http://bit.ly/Afr8s9')]
     @conf = test_conf
   end
   

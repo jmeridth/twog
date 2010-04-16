@@ -8,6 +8,8 @@ require 'optparse'
 require 'whenever'
 require 'fileutils'
 
+include Twog::Twog
+
 twog_dir = "#{ENV['HOME']}/.twog"
 FileUtils.mkdir_p twog_dir unless File.exists?(twog_dir)
 twog_cron_schedule_file = "#{twog_dir}/schedule.rb"
@@ -16,17 +18,21 @@ twog_cron_identifier = "twog"
 legacy_conf_file_name = "#{ENV['HOME']}/.twog.yaml"
 twog_conf_file = "#{twog_dir}/conf.yaml"
 
+def help
+  puts "Invalid options. Run `twog --help` for assistance."
+end
+
+def get_conf(conf)
+  raise "please run 'twog --conf' to create the #{conf} file" unless File.exists?(conf)
+  YAML.load_file(conf)
+end
+
 options = {}
 opts = OptionParser.new do |opts|
   opts.banner = "Twog is a tool to tweet blog posts"
 
-  opts.on_tail("-h","-?","--help", "Display help") do
-    puts opts
-    exit 0
-  end
-
   opts.on("-v", "--version", "Display current version") do
-    puts "Twog " + Twog.version
+    puts "Twog " + version
     exit 0
   end
 
@@ -37,13 +43,14 @@ opts = OptionParser.new do |opts|
     command "twog"
   end
     EOS
-
+    
     answer = ""
     if File.exists?(twog_cron_schedule_file)
       puts "Cron schedule file (#{twog_cron_schedule_file}) already exists.  Overwrite? [Y/n]"
       answer = gets
     end
  
+    File.open(twog_cron_schedule_log, 'w') {|f| f.write("") } unless File.exists?(twog_cron_schedule_log)
     File.open(twog_cron_schedule_file, 'w') {|f| f.write(twog_cron_schedule_content) } if ["Y","y",""].include?(answer.chomp)
 
     cron_options = {:file => twog_cron_schedule_file, :identifier => twog_cron_identifier, :update => true}
@@ -59,7 +66,14 @@ opts = OptionParser.new do |opts|
     exit 0
   end
 
-  opts.on("--conf", "Create default conf file") do
+  opts.on("-o", "--output", "View the blog posts that will be tweeted") do
+    posts = get_posts_to_tweet(get_conf(twog_conf_file)) 
+    puts "No posts to tweet" if posts.length == 0
+    posts.each {|post| puts "#{post.title} (#{Time.parse(post.date.to_s)})"; puts "#{post.link}" }
+    exit 0
+  end
+
+  opts.on("-c", "--conf", "Create default conf file") do
     conf_file_contents = <<-EOS
   rss_feed: 'http://url.com/feed.rss'
   consumer_key: 'consumer key'
@@ -81,18 +95,26 @@ opts = OptionParser.new do |opts|
     puts "Default configuration file created at #{twog_conf_file}"
     exit 0
   end
+  
+  opts.on("-h","-?","--help", "Display help") do
+    puts opts
+    exit 0
+  end
 end
 
 # Read command line options into `options` hash
-opts.parse!
+begin
+  opts.parse!
+rescue OptionParser::MissingArgument => e
+  puts e.message
+  help
+  exit 0
+end
 
 # Get args from the command line
 if ARGV.size > 1
-  puts "Invalid options. Run `twog --help` for assistance."
+  help
   exit(1)
 end
 
-raise "please run 'twog --conf' to create the #{twog_conf_file} file" unless File.exists?(twog_conf_file)
-conf = YAML.load_file(twog_conf_file)
-
-Twog.run(conf)
+run(get_conf(twog_conf_file))

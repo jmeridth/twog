@@ -41,6 +41,7 @@ begin
     s.add_dependency('twitter_oauth', '>= 0.3.3')
     s.add_dependency('bitly', '>= 0.4.0')
     s.add_dependency('whenever', '>= 0.4.1')
+    s.add_dependency('activesupport', '>= 2.3.5')
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install jeweler --version '>= 0.11.0'"

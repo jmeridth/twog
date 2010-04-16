@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twog}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Meridth"]
-  s.date = %q{2010-04-10}
+  s.date = %q{2010-04-15}
   s.default_executable = %q{twog}
   s.description = %q{Tool to tweet blog posts}
   s.email = ["jmeridth@gmail.com"]
@@ -28,9 +28,13 @@ Gem::Specification.new do |s|
      "bin/twog",
      "lib/twog.rb",
      "lib/twog/blog_posts_handler.rb",
+     "lib/twog/post.rb",
+     "lib/twog/rss_entry_to_twog_post_mapper.rb",
      "lib/twog/rss_parser.rb",
      "lib/twog/twitter_handler.rb",
      "spec/blog_posts_handler_spec.rb",
+     "spec/post_spec.rb",
+     "spec/rss_entry_to_twog_post_mapper_spec.rb",
      "spec/rss_parser_spec.rb",
      "spec/spec_helper.rb",
      "spec/twitter_handler_spec.rb",
@@ -45,6 +49,8 @@ Gem::Specification.new do |s|
   s.summary = %q{Tool to tweet blog posts}
   s.test_files = [
     "spec/blog_posts_handler_spec.rb",
+     "spec/post_spec.rb",
+     "spec/rss_entry_to_twog_post_mapper_spec.rb",
      "spec/rss_parser_spec.rb",
      "spec/spec_helper.rb",
      "spec/twitter_handler_spec.rb",
@@ -59,15 +65,18 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<twitter_oauth>, [">= 0.3.3"])
       s.add_runtime_dependency(%q<bitly>, [">= 0.4.0"])
       s.add_runtime_dependency(%q<whenever>, [">= 0.4.1"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 2.3.5"])
     else
       s.add_dependency(%q<twitter_oauth>, [">= 0.3.3"])
       s.add_dependency(%q<bitly>, [">= 0.4.0"])
       s.add_dependency(%q<whenever>, [">= 0.4.1"])
+      s.add_dependency(%q<activesupport>, [">= 2.3.5"])
     end
   else
     s.add_dependency(%q<twitter_oauth>, [">= 0.3.3"])
     s.add_dependency(%q<bitly>, [">= 0.4.0"])
     s.add_dependency(%q<whenever>, [">= 0.4.1"])
+    s.add_dependency(%q<activesupport>, [">= 2.3.5"])
   end
 end
 

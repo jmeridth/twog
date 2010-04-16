@@ -9,32 +9,42 @@ require 'bitly'
 
 # internal requires
 require 'twog/rss_parser'
+require 'twog/rss_entry_to_twog_post_mapper'
 require 'twog/blog_posts_handler'
 require 'twog/twitter_handler'
+require 'twog/post'
 
 
-class Twog
-  extend RssParser
-  extend BlogPostsHandler
-  extend TwitterHandler
+module Twog
+  module Twog
+    include RssParser
+    include RssEntryToTwogPostMapper
+    include BlogPostsHandler
+    include TwitterHandler
 
-  def self.run(conf)
-    posts = parse(conf['rss_feed'])
-    posts = get_new_blog_posts(posts, conf['last_blog_post_tweeted'])
-    return unless posts && posts.length > 0
-    bitly = get_bitly_from(conf)
-    tweet(posts, conf, bitly)
-  end
+    def run(conf)
+      posts = get_posts_to_tweet(conf)
+      return unless posts && posts.length > 0
+      bitly = get_bitly_from(conf)
+      tweet(posts, conf, bitly)
+    end
 
-  def self.get_bitly_from(conf)
-    bitly_username = conf['bitly_username']
-    bitly_api_key = conf['bitly_api_key']
-    return nil unless (bitly_username && bitly_api_key)
-    Bitly.new(bitly_username, bitly_api_key)
-  end
-  
-  def self.version
-    yml = YAML.load(File.read(File.join(File.dirname(__FILE__), *%w[.. VERSION.yml])))
-    "#{yml[:major]}.#{yml[:minor]}.#{yml[:patch]}"
+    def get_posts_to_tweet(conf)
+      posts = parse_feed(conf['rss_feed'])
+      posts = map(posts) 
+      posts = get_new_blog_posts(posts, conf['last_blog_post_tweeted'])
+    end
+
+    def get_bitly_from(conf)
+      bitly_username = conf['bitly_username']
+      bitly_api_key = conf['bitly_api_key']
+      return nil unless (bitly_username && bitly_api_key)
+      Bitly.new(bitly_username, bitly_api_key)
+    end
+    
+    def version
+      yml = YAML.load(File.read(File.join(File.dirname(__FILE__), *%w[.. VERSION.yml])))
+      "#{yml[:major]}.#{yml[:minor]}.#{yml[:patch]}"
+    end
   end
 end
