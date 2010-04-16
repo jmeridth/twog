@@ -1,19 +1,32 @@
+=== Version 0.3.1 / 2010-04-16
+
+* Enhancements
+  * Added executable command "-o/--output" to output what blog posts
+  will be tweeted
+  * Added activesupport gem dependency (needed by whatever gem)
+  * Restructured app to be mainly Ruby modules
+
+* Bugs
+  * Added mapping of rss entries to Twog::Post due to rss entries
+  having multiple ways to get date, title, link
+
+
 === Version 0.3.0 / 2010-04-10
 
 * Enhancements
-  * Added binary commands "--cronadd N" and "--cronrm" to install/remove
+  * Added exectable commands "--cronadd N" and "--cronrm" to install/remove
   cron job that calls twog every N minutes (added dependency on whenever gem)
-  * added more options to binary commands for help and version (-?,-h,-v)
+  * added more options to exectable commands for help and version (-?,-h,-v)
 
 === Version 0.2.2 / 2010-04-09
 
 * Bugs
-  * fix README to reference "--conf" binary command instead of legacy rake task
+  * fix README to reference "--conf" exectable command instead of legacy rake task
 
 === Version 0.2.1 / 2010-04-08
 
 * Features
-  * change creating of conf file to a binary option (--conf)  instead of rake task
+  * change creating of conf file to a exectable option (--conf)  instead of rake task
 
 === Version 0.2.0 / 2010-04-08
 
