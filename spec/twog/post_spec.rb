@@ -17,9 +17,6 @@ describe Post do
       twog_post.date.should == "2010-04-02T01:00:00-06:00"
     end
   
-    ##
-    ## RE-WRITE TO BE MORE RUBYISH
-    ##
     it "should sort multiple posts" do
       unsorted = (1..10).sort_by { rand }.collect do |i|
         updated = stub('update', :content => (Time.now + (60*60*24*i)).to_s)
@@ -30,12 +27,7 @@ describe Post do
       sorted = unsorted.sort!
       sorted.length.should == 10
 
-      time = Time.now
-      sorted.each do |p| 
-        p_time = Time.parse(p.date.to_s)
-        p_time.should be > time
-        time = p_time 
-      end
+      sorted.inject {|i, j| Time.parse(i.date.to_s).should be < Time.parse(j.date.to_s); j }
     end
   end
 
@@ -51,9 +43,6 @@ describe Post do
       twog_post.date.should == "2010-04-02T01:00:00-06:00"
     end
 
-    ##
-    ## RE-WRITE TO BE MORE RUBYISH
-    ##
     it "should sort multiple posts again" do
       unsorted = (1..10).sort_by { rand }.collect do |i|
         post = stub('post', :pubDate => (Time.now + (60*60*24*i)).to_s, :link => 'http://tinyurl.com')
@@ -62,13 +51,7 @@ describe Post do
       sorted = unsorted.sort!
       sorted.length.should == 10
 
-      time = Time.now
-      sorted.each do |p| 
-        p_time = Time.parse(p.date.to_s)
-        p_time.should be > time
-        time = p_time 
-      end
-
+      sorted.inject {|i, j| Time.parse(i.date.to_s).should be < Time.parse(j.date.to_s); j }
     end
   end
 end
