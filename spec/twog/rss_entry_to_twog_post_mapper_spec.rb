@@ -1,7 +1,7 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.join(File.dirname(__FILE__), "/../spec_helper")
 
-describe Twog::RssEntryToTwogPostMapper do
-  include Twog::RssEntryToTwogPostMapper
+describe RssEntryToTwogPostMapper do
+  include RssEntryToTwogPostMapper
 
   it "should convert rss entries that have updated.content and link.href" do
     updated = stub('update', :content => '2010-04-02T01:00:00-06:00')

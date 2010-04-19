@@ -1,8 +1,7 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.join(File.dirname(__FILE__), "/../spec_helper")
 
-describe Twog::RssParser do 
-  include TwogSpecHelper
-  include Twog::RssParser
+describe RssParser do 
+  include RssParser
 
   it "should throw exception if rss_feed isn't provided" do
     lambda { parse_feed(nil) }.should raise_error('RSS feed missing')

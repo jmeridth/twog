@@ -1,8 +1,7 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.join(File.dirname(__FILE__), "/../spec_helper")
 
-describe Twog::BlogPostsHandler do 
-  include TwogSpecHelper
-  include Twog::BlogPostsHandler
+describe BlogPostsHandler do 
+  include BlogPostsHandler
 
   before(:each) do
     post = Twog::Post.new(stub('', :pubDate => Time.now, :link => 'http://tinyurl.com'))

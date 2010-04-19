@@ -1,7 +1,6 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.join(File.dirname(__FILE__), "/../spec_helper")
 
 describe Twog do 
-  include TwogSpecHelper
   include Twog::Twog
 
   it "should not tweet if there are no new blog posts" do

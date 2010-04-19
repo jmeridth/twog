@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.join(File.dirname(__FILE__), "/../spec_helper")
 
-describe Twog::Post do
+describe Post do
   context "when rss entry has updated and link.href" do
     before(:each) do
       updated = stub('update', :content => '2010-04-02T01:00:00-06:00')
