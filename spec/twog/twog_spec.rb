@@ -35,4 +35,18 @@ describe Twog do
     Bitly.stub!(:new).and_return("hello")
     get_bitly_from(test_conf).should == "hello"
   end
+
+  it "should get the version" do
+    YAML.stub!(:load).and_return({:major => "1", :minor => "0", :patch => "0"})
+    version.should == "1.0.0"
+  end
+
+  it "should get the posts to tweet" do
+    conf = test_conf
+    self.should_receive(:parse_feed).with(conf['rss_feed']).and_return(1)
+    self.should_receive(:map).with(1).and_return(2)
+    self.should_receive(:get_new_blog_posts).with(2, conf['last_blog_post_tweeted'])
+
+    get_posts_to_tweet(conf)
+  end
 end

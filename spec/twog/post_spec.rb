@@ -5,18 +5,26 @@ describe Post do
     before(:each) do
       updated = stub('update', :content => '2010-04-02T01:00:00-06:00')
       link = stub('link', :href => 'http://tinyurl.com')
-      @post = stub('post', :updated => updated, :link => link)
+      title = stub('title', :content => 'test title')
+      @post = stub('post', :updated => updated, :link => link, :title => title)
 
     end
 
     it "should return a link" do
-
       twog_post = Twog::Post.new(@post)
-
-      twog_post.link.should == "http://tinyurl.com"
       twog_post.date.should == "2010-04-02T01:00:00-06:00"
     end
   
+    it "should return a date" do
+      twog_post = Twog::Post.new(@post)
+      twog_post.date.should == "2010-04-02T01:00:00-06:00"
+    end
+
+    it "should return a title" do
+      twog_post = Twog::Post.new(@post)
+      twog_post.title.should == "test title"
+    end
+
     it "should sort multiple posts" do
       unsorted = (1..10).sort_by { rand }.collect do |i|
         updated = stub('update', :content => (Time.now + (60*60*24*i)).to_s)
@@ -28,6 +36,18 @@ describe Post do
       sorted.length.should == 10
 
       sorted.inject {|i, j| Time.parse(i.date.to_s).should be < Time.parse(j.date.to_s); j }
+    end
+    
+    it "should leave meeting list alone if all the times are the same" do
+      unsorted = (1..10).collect do |i|
+        updated = stub('update', :content => (Time.now + (60*60*24*3)).to_s)
+        link = stub('link', :href => 'http://tinyurl.com')
+        post = stub('post', :updated => updated, :link => link)
+        Twog::Post.new(post)
+      end
+      sorted = unsorted.sort!
+      sorted.length.should == 10
+      sorted.should == unsorted
     end
   end
 
