@@ -17,15 +17,7 @@ module Twog
     end
     
     def <=>(other_post)
-      this_time = Time.parse(self.date.to_s)
-      other_time = Time.parse(other_post.date.to_s)
-      if this_time < other_time
-        -1
-      elsif this_time > other_time
-        1
-      else
-        0
-      end
+      Time.parse(self.date.to_s) <=> Time.parse(other_post.date.to_s)
     end
   end
 end
