@@ -1,6 +1,6 @@
 # Twog
 
-![https://secure.travis-ci.org/jmeridth/twog.png?branch=master](Build Status)
+![Build Status](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)
 
 By Jason Meridth
 
@@ -66,10 +66,10 @@ Please check the [issues](http://github.com/armmer/twog/issues) on Github for fu
 
 ## Contributors
 
-Matt Dietz ([cerberus98](http://github.com/cerberus98))  special thanks
-Chris MacGown ([ChristopherMacGown](http://github.com/ChristopherMacGown))
-Paul Voccio ([pvo](http://github.com/pvo))
-Joe Ocampo ([agilejoe](http://github.com/agilejoe))
+* Matt Dietz ([cerberus98](http://github.com/cerberus98))  special thanks
+* Chris MacGown ([ChristopherMacGown](http://github.com/ChristopherMacGown))
+* Paul Voccio ([pvo](http://github.com/pvo))
+* Joe Ocampo ([agilejoe](http://github.com/agilejoe))
 
 ## Copyright
 
