@@ -2,6 +2,8 @@ require 'rubygems'
 require 'rspec/core/rake_task'
 require 'rubygems/package_task'
   
+task :default => ['spec:coverage']
+
 namespace :twog do
   desc "Clean out the coverage and the pkg"
   task :clean do
