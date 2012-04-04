@@ -2,7 +2,6 @@ require 'rubygems'
 require 'rspec/core/rake_task'
 require 'rubygems/package_task'
   
-
 namespace :twog do
   desc "Clean out the coverage and the pkg"
   task :clean do
@@ -18,12 +17,11 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
 end
 
 namespace :spec do  
-  desc "Run rcov on the spec files"
+  desc "Run coverage on the spec files"
   RSpec::Core::RakeTask.new(:coverage) do |spec|
     spec.pattern = FileList['spec/**/*_spec.rb']
     spec.rspec_opts = ['--color']
-    spec.rcov = true
-    spec.rcov_opts = ['--exclude', 'spec']
+    ENV['COVERAGE'] = "true"
   end
 end
 

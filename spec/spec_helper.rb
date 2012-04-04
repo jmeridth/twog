@@ -3,8 +3,14 @@ $: << File.join(File.dirname(__FILE__), "/../lib")
 require 'rubygems'
 require 'twog'
 require 'rss'
+require 'simplecov'
 
 include Twog
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start
+end
 
 def test_conf
   @conf = {'rss_feed' => 'rss feed',
