@@ -1,6 +1,6 @@
 # Twog
 
-![Build Status](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)
+![http://travis-ci.org/#!/jmeridth/twog](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)
 
 By Jason Meridth
 
@@ -32,7 +32,7 @@ or
 
 ## Shortening Blog Post URLs With Bitly API
 
-In order to use Bitly for URL shortening, you'll need to go to http://bit.ly and click the [Sign Up](http://bit.ly/account/register?rd=/) link on the top right and get an account.  Once you are logged-in you click the [Account](http://bit.ly/account) link in the same top right area.  You will see your API Key in the middle of the page.
+In order to use Bitly for URL shortening, you'll need to go to [http://bit.ly](http://bit.ly) and click the [Sign Up](http://bit.ly/account/register?rd=/) link on the top right and get an account.  Once you are logged-in you click the [Account](http://bit.ly/account) link in the same top right area.  You will see your API Key in the middle of the page.
 
 Put your bit.ly username and api key into the ~/.twog/conf.yaml file to be used in the code.
 
