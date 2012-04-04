@@ -1,6 +1,6 @@
 # Twog
 
-![http://travis-ci.org/#!/jmeridth/twog](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)
+[![Build Status](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)](http://travis-ci.org/#!/jmeridth/twog)
 
 By Jason Meridth
 
