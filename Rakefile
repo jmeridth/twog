@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 require 'rake/gempackagetask'
   
 
@@ -12,18 +12,18 @@ namespace :twog do
 end
 
 desc "Run all specs in spec directory"
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = ['--color']
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
+  spec.rspec_opts = ['--color']
 end
 
 namespace :spec do  
   desc "Run rcov on the spec files"
-  Spec::Rake::SpecTask.new(:coverage) do |t|
-    t.spec_files = FileList['spec/**/*_spec.rb']
-    t.spec_opts = ['--color']
-    t.rcov = true
-    t.rcov_opts = ['--exclude', 'spec']
+  RSpec::Core::RakeTask.new(:coverage) do |spec|
+    spec.pattern = FileList['spec/**/*_spec.rb']
+    spec.rspec_opts = ['--color']
+    spec.rcov = true
+    spec.rcov_opts = ['--exclude', 'spec']
   end
 end
 
