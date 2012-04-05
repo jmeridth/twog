@@ -62,7 +62,7 @@ To remove twog as a crontab job, run the command:
 
 ## TODO
 
-Please check the [issues](http://github.com/armmer/twog/issues) on Github for future features or bugs that need to be fixed
+Please check the [issues](http://github.com/jmeridth/twog/issues) on Github for future features or bugs that need to be fixed
 
 ## Contributors
 
