@@ -1,6 +1,7 @@
 # Twog
 
 [![Build Status](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)](http://travis-ci.org/#!/jmeridth/twog)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/jmeridth/twog)
 
 By Jason Meridth
 
