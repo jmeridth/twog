@@ -34,7 +34,7 @@ begin
     s.name = "twog"
     s.summary = %Q{Tool to tweet blog posts}
     s.email = ["jmeridth@gmail.com"]
-    s.homepage = "http://github.com/armmer/twog"
+    s.homepage = "http://github.com/jmeridth/twog"
     s.description = "Tool to tweet blog posts"
     s.authors = ["Jason Meridth"]
     s.rubyforge_project = "twog"
