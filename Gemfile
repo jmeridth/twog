@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '2.5.0'
 
 gem 'twitter_oauth', '>=0.3.3'
 gem 'bitly', '>=0.4.0'
