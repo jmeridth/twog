@@ -12,17 +12,17 @@ describe Post do
 
     it "should return a link" do
       twog_post = Twog::Post.new(@post)
-      twog_post.date.should == "2010-04-02T01:00:00-06:00"
+      expect(twog_post.date).to eq("2010-04-02T01:00:00-06:00")
     end
-  
+
     it "should return a date" do
       twog_post = Twog::Post.new(@post)
-      twog_post.date.should == "2010-04-02T01:00:00-06:00"
+      expect(twog_post.date).to eq("2010-04-02T01:00:00-06:00")
     end
 
     it "should return a title" do
       twog_post = Twog::Post.new(@post)
-      twog_post.title.should == "test title"
+      expect(twog_post.title).to eq("test title")
     end
 
     it "should sort multiple posts" do
@@ -33,11 +33,11 @@ describe Post do
         Twog::Post.new(post)
       end
       sorted = unsorted.sort!
-      sorted.length.should == 10
+      expect(sorted.length).to eq(10)
 
-      sorted.inject {|i, j| Time.parse(i.date.to_s).should be < Time.parse(j.date.to_s); j }
+      sorted.inject {|i, j| expect(Time.parse(i.date.to_s)).to be < Time.parse(j.date.to_s); j }
     end
-    
+
     it "should leave meeting list alone if all the times are the same" do
       unsorted = (1..10).collect do |i|
         updated = stub('update', :content => (Time.now + (60*60*24*3)).to_s)
@@ -46,8 +46,8 @@ describe Post do
         Twog::Post.new(post)
       end
       sorted = unsorted.sort!
-      sorted.length.should == 10
-      sorted.should == unsorted
+      expect(sorted.length).to eq(10)
+      expect(sorted).to eq(unsorted)
     end
   end
 
@@ -59,8 +59,8 @@ describe Post do
     it "should return a link" do
       twog_post = Twog::Post.new(@post)
 
-      twog_post.link.should == "http://tinyurl.com"
-      twog_post.date.should == "2010-04-02T01:00:00-06:00"
+      expect(twog_post.link).to eq("http://tinyurl.com")
+      expect(twog_post.date).to eq("2010-04-02T01:00:00-06:00")
     end
 
     it "should sort multiple posts again" do
@@ -69,9 +69,9 @@ describe Post do
         Twog::Post.new(post)
       end
       sorted = unsorted.sort!
-      sorted.length.should == 10
+      expect(sorted.length).to eq(10)
 
-      sorted.inject {|i, j| Time.parse(i.date.to_s).should be < Time.parse(j.date.to_s); j }
+      sorted.inject {|i, j| expect(Time.parse(i.date.to_s)).to be < Time.parse(j.date.to_s); j }
     end
   end
 end

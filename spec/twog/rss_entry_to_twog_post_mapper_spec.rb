@@ -7,14 +7,14 @@ describe RssEntryToTwogPostMapper do
     updated = stub('update', :content => '2010-04-02T01:00:00-06:00')
     link = stub('link', :href => 'http://tinyurl.com')
     post = stub('post', :updated => updated, :link => link)
-    
+
     posts = (0..20).collect { |x| post }
 
     twog_posts = map(posts)
-    twog_posts.length.should == 21
+    expect(twog_posts.length).to eq(21)
     twog_posts.each do |p|
-      p.date.should == "2010-04-02T01:00:00-06:00"
-      p.link.should == "http://tinyurl.com"
+      expect(p.date).to eq("2010-04-02T01:00:00-06:00")
+      expect(p.link).to eq("http://tinyurl.com")
     end
   end
 
@@ -23,10 +23,10 @@ describe RssEntryToTwogPostMapper do
     posts = (0..20).collect { |x| post }
 
     twog_posts = map(posts)
-    twog_posts.length.should == 21
+    expect(twog_posts.length).to eq(21)
     twog_posts.each do |p|
-      p.date.should == "2010-04-02T01:00:00-06:00"
-      p.link.should == "http://tinyurl.com"
+      expect(p.date).to eq("2010-04-02T01:00:00-06:00")
+      expect(p.link).to eq("http://tinyurl.com")
     end
   end
 end
