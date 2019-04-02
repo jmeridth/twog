@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 ruby '2.5.0'
 
+gem 'rack', '~>2.0.6'
+gem 'nokogiri', '~>1.8.5'
 gem 'twitter_oauth', '>=0.3.3'
 gem 'bitly', '>=0.4.0'
 gem 'whenever', '>=0.4.1'
