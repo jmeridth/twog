@@ -53,7 +53,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     oauth (0.5.4)
     oauth2 (1.4.0)
@@ -102,6 +102,7 @@ DEPENDENCIES
   activesupport (>= 2.3.5)
   bitly (>= 0.4.0)
   jeweler (>= 0.11.0)
+  nokogiri (~> 1.8.5)
   rack (~> 2.0.6)
   rake
   rspec (>= 2.0.0.beta.22)
