@@ -1,4 +1,4 @@
-=== Version 0.3.2 / 2019-09-23
+=== Version 0.3.3 / 2019-09-23
 
 * Enhancements
   * Update to latest rspec mock formatting
@@ -6,6 +6,11 @@
 * Security
   * Update gem dependencies due to known CVEs
   
+=== Version 0.3.2 / 2013-01-29
+
+* Enhancements
+  * Fix github repo links for new github username s/armmer/jmeridth
+
 === Version 0.3.1 / 2010-04-16
 
 * Enhancements
