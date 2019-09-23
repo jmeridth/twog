@@ -6,12 +6,12 @@
 
 Gem::Specification.new do |s|
   s.name = "twog".freeze
-  s.version = "1.0.0"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jason Meridth".freeze]
-  s.date = "2018-02-20"
+  s.date = "2019-09-23"
   s.description = "Tool to tweet blog posts".freeze
   s.email = ["jmeridth@gmail.com".freeze]
   s.executables = ["twog".freeze]

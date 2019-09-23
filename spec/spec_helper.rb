@@ -25,24 +25,21 @@ end
 
 def rss_feed_entry
   entry=<<-EOS
-   <entry>
-     <title>Pair Programming</title>
-     <link href="http://blog.jasonmeridth.com/2009/01/29/pair-programming.html"/>
-     <updated>2009-01-29T00:00:00-08:00</updated>
-     <id>http://blog.jasonmeridth.com/2009/01/29/pair-programming</id>
-     <content type="html">&lt;h1&gt;Pair Programming&lt;/h1&gt;
-  &lt;p class=&quot;meta&quot;&gt;29 Jan 2009 &amp;#8211; San Antonio&lt;/p&gt;
-  &lt;p&gt;I recently found this post, &lt;a href=&quot;http://blog.jayfields.com/2008/02/pair-programming-all-time.html&quot;&gt;Pair Programming all the time&lt;/a&gt;, by &lt;a href=&quot;http://blog.jayfields.com/&quot;&gt;Jay Fields&lt;/a&gt; and loved it.  I&amp;#8217;ve felt the same way about pair programming.&lt;/p&gt;
-  &lt;blockquote&gt;
-  &lt;p&gt;&amp;#8220;I define all the time (in terms of pairing) as when I&amp;#8217;m writing code that I&amp;#8217;m going to commit.&amp;#8221;&lt;/p&gt;
-  &lt;/blockquote&gt;
-  &lt;p&gt;That is perfect.  Common sense but stated explicitly.  I worked in an Agile shop for 2 1/2 years and the environment was setup to highlight pair programming.  Pictures and little explanation &lt;a href=&quot;http://www.lostechies.com/blogs/joe_ocampo/archive/2007/12/09/where-the-magic-happens-our-dev-lap.aspx&quot;&gt;here&lt;/a&gt; (Thanks Joe).  We even marked tasks in the stories as low (L) or high (H) to dictate whether a pair was necessary (this was decided during our modeling week by the two developers who tasked the story, but always up for discussion during the iteration).  It worked out pretty well.&lt;/p&gt;
-  &lt;p&gt;I understand and have heard all the reasons to not pair program.  Sometimes it works and sometimes it doesn&amp;#8217;t.  I&amp;#8217;ve personally experienced the benefits.  You learn to work with different personalities and that can only benefit you in your professional career.  And, the obvious reason, is immediate code review.  But, as my friend Scott C. Reynolds &lt;a href=&quot;http://www.lostechies.com/blogs/scottcreynolds/archive/2009/01/23/on-teaching-learning-and-being-honest-with-ourselves.aspx&quot;&gt;says&lt;/a&gt; (more or less):&lt;/p&gt;
-  &lt;blockquote&gt;
-  &lt;p&gt;&amp;#8220;Not everyone is cut from the same cloth&amp;#8221;&lt;/p&gt;
-  &lt;/blockquote&gt;
-  &lt;p&gt;That is true and that is life.  I hope this helps someone understand that not all pair programming enthusiasts are zealots.   I know it&amp;#8217;s a fine line though.&lt;/p&gt;</content>
-   </entry>
+  <item>
+<title>Gocode Vim Plugin and Go Modules</title>
+<description>
+<p><strong>Update</strong>: My friend <a href="https://twitter.com/_seemethere">Eli Uriegas</a> let me know that you don’t need <code class="highlighter-rouge">gocode</code> anymore since <code class="highlighter-rouge">vim-go</code> has autocompletion. I tested it out and he is correct. <a href="https://twitter.com/_seemethere/status/1081626050717728770">Here</a> is his tweet with a link to his dotfiles on how he sets up his <code class="highlighter-rouge">.vimrc</code> to use <code class="highlighter-rouge">vim-go</code></p> <p><em>Original Post:</em></p> <p>I recently purchased <a href="https://lets-go.alexedwards.net/">Let’s Go</a> from Alex Edwards. I wanted an end-to-end Golang website tutorial. It has been great. Lots learned.</p> <p>Unfortunately, he is using Go’s modules and the version of the gocode Vim plugin I was using did not support Go modules.</p> <h3 id="solution">Solution:</h3> <p>Use <a href="https://github.com/stamblerre/gocode">this fork</a> of the gocode Vim plugin and you’ll get support for Go modules.</p> <p>I use <a href="https://github.com/junegunn/vim-plug">Vim Plug</a> for my Vim plugins. Huge fan of Vundle but I like the post-actions feature of Plug. I just had to change one line of my vimrc and re-run updates.</p> <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">diff --git a/vimrc b/vimrc index 3e8edf1..8395705 100644 </span><span class="gd">--- a/vimrc </span><span class="gi">+++ b/vimrc </span><span class="gu">@@ -73,7 +73,7 @@ endif </span> let editor_name='nvim' Plug 'zchee/deoplete-go', { 'do': 'make'} endif <span class="gd">- Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' } </span><span class="gi">+ Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } </span> Plug 'godoctor/godoctor.vim', {'for': 'go'} " Gocode refactoring tool " } </code></pre></div></div> <p>That is the line I had to change then run <code class="highlighter-rouge">:PlugUpdate!</code> and the new plugin was installed.</p> <p>I figured all of this out due to <a href="https://github.com/zchee/deoplete-go/issues/134#issuecomment-435436305">this comment</a> by <a href="https://github.com/cippaciong">Tommaso Sardelli</a> on Github. Thank you Tommaso.</p>
+</description>
+<pubDate>Sat, 05 Jan 2019 11:09:26 -0600</pubDate>
+<link>
+https://blog.jasonmeridth.com/posts/gocode-vim-plugin-and-go-modules/
+</link>
+<guid isPermaLink="true">
+https://blog.jasonmeridth.com/posts/gocode-vim-plugin-and-go-modules/
+</guid>
+<category>go</category>
+<category>vim</category>
+</item>
    EOS
    return entry
 end
@@ -53,20 +50,17 @@ def rss_entry
 end
 
 def rss_feed_url_content
-  post=<<-EOS
-  <?xml version="1.0" encoding="utf-8"?>
-  <feed xmlns="http://www.w3.org/2005/Atom">
-   
-   <title>Jason Meridth</title>
-   <link href="http://blog.jasonmeridth.com/atom.xml" rel="self"/>
-   <link href="http://blog.jasonmeridth.com/"/>
-   <updated>2010-04-04T13:15:31-07:00</updated>
-   <id>http://blog.jasonmeridth.com/</id>
-   <author>
-     <name>Jason Meridth</name>
-     <email>jmeridth@gmail.com</email>
-   </author>
+  rss_header=<<-EOS
+  <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Learn, Converse, Share</title>
+    <description>My Personal Blog</description>
+    <link>https://blog.jasonmeridth.com/</link>
+    <atom:link href="https://blog.jasonmeridth.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 01 Mar 2019 13:02:56 -0600</pubDate>
+    <lastBuildDate>Fri, 01 Mar 2019 13:02:56 -0600</lastBuildDate>
+    <generator>Jekyll v3.7.4</generator>
   EOS
-  return "#{post}#{rss_feed_entry}"
+  return "#{rss_header}#{rss_feed_entry}</channel></rss>"
 end
 

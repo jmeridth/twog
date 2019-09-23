@@ -5,7 +5,7 @@ describe TwitterHandler do
   include TwitterHandler
 
   before(:each) do
-    @posts = [stub('post', :date => Time.now, :link => 'http://bit.ly/Afr8s9')]
+    @posts = [double('post', date: Time.now, link: 'http://bit.ly/Afr8s9')]
     @conf = test_conf
   end
 
@@ -16,31 +16,31 @@ describe TwitterHandler do
 
   it "should throw exception if oauth consumer key isn't provided" do
     @conf['consumer_key'] = nil
-    expect(tweet(@posts, @conf, nil)).to raise_error('OAuth Consumer Key missing')
+    expect{tweet(@posts, @conf, nil)}.to raise_error('OAuth Consumer Key missing')
   end
 
   it "should throw exception if oauth consumer secret isn't provided" do
     @conf['consumer_secret'] = nil
-    expect(tweet(@posts, @conf, nil)).to raise_error('OAuth Consumer Secret missing')
+    expect{tweet(@posts, @conf, nil)}.to raise_error('OAuth Consumer Secret missing')
   end
 
   it "should throw exception if oauth access token isn't provided" do
     @conf['access_token'] = nil
-    expect(tweet(@posts, @conf, nil)).to raise_error('OAuth Access Token missing')
+    expect{tweet(@posts, @conf, nil)}.to raise_error('OAuth Access Token missing')
   end
 
   it "should throw exception if oauth access secret isn't provided" do
     @conf['access_secret'] = nil
-    expect(tweet(@posts, @conf, nil)).to raise_error('OAuth Access Secret missing')
+    expect{tweet(@posts, @conf, nil)}.to raise_error('OAuth Access Secret missing')
   end
 
   it "should shorten the blog post url with bitly when bitly handler is provided" do
-    bitly = mock 'bitly'
-    bitly_url = mock 'bitly_url'
-    bitly.should_receive(:shorten).and_return(bitly_url)
-    bitly_url.should_receive(:short_url)
-    self.stub(:use_twitter_oauth)
-    self.stub(:update_config_file_with_latest_tweet_date)
+    bitly = double 'bitly'
+    bitly_url = double 'bitly_url'
+    allow(bitly).to receive(:shorten).and_return(bitly_url)
+    allow(bitly_url).to receive(:short_url)
+    allow(self).to receive(:use_twitter_oauth)
+    allow(self).to receive(:update_config_file_with_latest_tweet_date)
     tweet(@posts, @conf, bitly)
   end
 

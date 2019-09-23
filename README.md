@@ -70,9 +70,8 @@ Please check the [issues](http://github.com/jmeridth/twog/issues) on Github for 
 
 * Matt Dietz ([cerberus98](http://github.com/cerberus98))  special thanks
 * Chris MacGown ([ChristopherMacGown](http://github.com/ChristopherMacGown))
-* Paul Voccio ([pvo](http://github.com/pvo))
 * Joe Ocampo ([agilejoe](http://github.com/agilejoe))
 
 ## Copyright
 
-Copyright (c) 2010 Jason Meridth. See LICENSE for details.
+Copyright (c) 2019 Jason Meridth. See LICENSE for details.

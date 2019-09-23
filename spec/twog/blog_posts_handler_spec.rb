@@ -4,7 +4,7 @@ describe BlogPostsHandler do
   include BlogPostsHandler
 
   before(:each) do
-    post = Twog::Post.new(stub('', :pubDate => Time.now, :link => 'http://tinyurl.com'))
+    post = Twog::Post.new(double('', pubDate: Time.now, link: 'http://tinyurl.com'))
     @posts = [post]
     @last_blog_post_tweeted = test_conf['last_blog_post_tweeted']
   end
@@ -30,7 +30,7 @@ describe BlogPostsHandler do
   end
 
   it "should return zero posts if the date is older than the last blog post date tweeted" do
-    post = Twog::Post.new(stub('', :pubDate => (Date.parse(@last_blog_post_tweeted.to_s) - 10).to_s, :link => 'http://tinyurl.com'))
+    post = Twog::Post.new(double('', pubDate: (Date.parse(@last_blog_post_tweeted.to_s) - 10).to_s, link: 'http://tinyurl.com'))
     @posts = [post]
     posts = get_new_blog_posts(@posts, @last_blog_post_tweeted)
     expect(posts.length).to eq(0)
