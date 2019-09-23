@@ -1,6 +1,7 @@
 # Twog
 
 [![Gem Version](https://badge.fury.io/rb/twog.png)](http://badge.fury.io/rb/twog)
+[![CI Status](https://github.com/jmeridth/twog/workflows/Ruby/badge.svg)](https://github.com/jmeridth/twog/actions)
 [![Code Climate](https://codeclimate.com/github/jmeridth/twog.png)](https://codeclimate.com/github/jmeridth/twog)
 
 By Jason Meridth
