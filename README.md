@@ -1,7 +1,6 @@
 # Twog
 
 [![Gem Version](https://badge.fury.io/rb/twog.png)](http://badge.fury.io/rb/twog)
-[![Build Status](https://secure.travis-ci.org/jmeridth/twog.png?branch=master)](http://travis-ci.org/#!/jmeridth/twog)
 [![Code Climate](https://codeclimate.com/github/jmeridth/twog.png)](https://codeclimate.com/github/jmeridth/twog)
 
 By Jason Meridth
