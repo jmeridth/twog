@@ -1,3 +1,8 @@
+=== Version 0.3.4 / 2020-03-15
+
+* Security
+  * Update gem dependencies due to known CVEs
+
 === Version 0.3.3 / 2019-09-23
 
 * Enhancements
