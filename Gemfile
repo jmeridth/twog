@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.6.3'
+ruby '2.7.0'
 
 gem 'rack', '~>2.0.6'
 gem 'nokogiri', '>= 1.10.4'
