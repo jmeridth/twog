@@ -28,23 +28,17 @@ namespace :spec do
 end
 
 begin
-  gem 'jeweler', '>= 0.11.0'
-  require 'jeweler'
-  Jeweler::Tasks.new do |s|
+  require 'juwelier'
+  Juwelier::Tasks.new do |s|
     s.name = "twog"
     s.summary = %Q{Tool to tweet blog posts}
     s.email = ["jmeridth@gmail.com"]
     s.homepage = "http://github.com/jmeridth/twog"
     s.description = "Tool to tweet blog posts"
     s.authors = ["Jason Meridth"]
-    s.rubyforge_project = "twog"
-    s.add_dependency('twitter_oauth', '>= 0.3.3')
-    s.add_dependency('bitly', '>= 0.4.0')
-    s.add_dependency('whenever', '>= 0.4.1')
-    s.add_dependency('activesupport', '>= 2.3.5')
   end
 rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install jeweler --version '>= 0.11.0'"
+  puts "Juwelier not available. Install it with: sudo gem install juwelier --version '>= 2.4.9'"
   exit(1)
 end
 
