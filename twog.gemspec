@@ -65,10 +65,6 @@ Gem::Specification.new do |s|
     s.add_development_dependency(%q<rake>.freeze, [">= 0"])
     s.add_development_dependency(%q<rspec>.freeze, [">= 2.0.0.beta.22"])
     s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
-    s.add_runtime_dependency(%q<twitter_oauth>.freeze, [">= 0.3.3"])
-    s.add_runtime_dependency(%q<bitly>.freeze, [">= 0.4.0"])
-    s.add_runtime_dependency(%q<whenever>.freeze, [">= 0.4.1"])
-    s.add_runtime_dependency(%q<activesupport>.freeze, [">= 2.3.5"])
   else
     s.add_dependency(%q<rack>.freeze, ["~> 2.0.8"])
     s.add_dependency(%q<nokogiri>.freeze, [">= 1.10.8"])
@@ -80,10 +76,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rake>.freeze, [">= 0"])
     s.add_dependency(%q<rspec>.freeze, [">= 2.0.0.beta.22"])
     s.add_dependency(%q<simplecov>.freeze, [">= 0"])
-    s.add_dependency(%q<twitter_oauth>.freeze, [">= 0.3.3"])
-    s.add_dependency(%q<bitly>.freeze, [">= 0.4.0"])
-    s.add_dependency(%q<whenever>.freeze, [">= 0.4.1"])
-    s.add_dependency(%q<activesupport>.freeze, [">= 2.3.5"])
   end
 end
 
