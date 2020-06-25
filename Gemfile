@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.7.1'
 
-gem 'rack', '~>2.0.6'
+gem 'rack', '>=2.1.4'
 gem 'nokogiri', '>= 1.10.4'
 gem 'twitter_oauth', '>=0.3.3'
 gem 'bitly', '>=0.4.0'
