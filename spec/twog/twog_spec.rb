@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.join(File.dirname(__FILE__), '/../spec_helper')
 
 describe Twog do
@@ -37,7 +39,7 @@ describe Twog do
   end
 
   it 'should get the version' do
-    allow(YAML).to receive(:load).and_return({major: '1', minor:'0', patch: '0'})
+    allow(YAML).to receive(:safe_load).and_return({ major: '1', minor: '0', patch: '0' })
     expect(version).to eq('1.0.0')
   end
 end

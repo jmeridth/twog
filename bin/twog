@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 require 'tempfile'
 require 'twog'
@@ -11,69 +12,74 @@ require 'fileutils'
 include Twog::Twog
 
 twog_dir = "#{ENV['HOME']}/.twog"
-FileUtils.mkdir_p twog_dir unless File.exists?(twog_dir)
+FileUtils.mkdir_p twog_dir unless File.exist?(twog_dir)
 twog_cron_schedule_file = "#{twog_dir}/schedule.rb"
 twog_cron_schedule_log = "#{twog_dir}/cron.log"
-twog_cron_identifier = "twog"
+twog_cron_identifier = 'twog'
 legacy_conf_file_name = "#{ENV['HOME']}/.twog.yaml"
 twog_conf_file = "#{twog_dir}/conf.yaml"
 
 def help
-  puts "Invalid options. Run `twog --help` for assistance."
+  puts 'Invalid options. Run `twog --help` for assistance.'
 end
 
 def get_conf(conf)
-  raise "please run 'twog --conf' to create the #{conf} file" unless File.exists?(conf)
+  raise "please run 'twog --conf' to create the #{conf} file" unless File.exist?(conf)
+
   YAML.load_file(conf)
 end
 
 options = {}
 opts = OptionParser.new do |opts|
-  opts.banner = "Twog is a tool to tweet blog posts"
+  opts.banner = 'Twog is a tool to tweet blog posts'
 
-  opts.on("-v", "--version", "Display current version") do
-    puts "Twog " + version
+  opts.on('-v', '--version', 'Display current version') do
+    puts "Twog #{version}"
     exit 0
   end
 
-  opts.on("--cronadd N", "Add crontab job to run twog every N minutes") do |n|
+  opts.on('--cronadd N', 'Add crontab job to run twog every N minutes') do |n|
     twog_cron_schedule_content = <<-EOS
   set :output, "#{twog_cron_schedule_log}"
   every #{n}.minutes do
     command "twog"
   end
     EOS
-    
-    answer = ""
-    if File.exists?(twog_cron_schedule_file)
+
+    answer = ''
+    if File.exist?(twog_cron_schedule_file)
       puts "Cron schedule file (#{twog_cron_schedule_file}) already exists.  Overwrite? [Y/n]"
       answer = gets
     end
- 
-    File.open(twog_cron_schedule_log, 'w') {|f| f.write("") } unless File.exists?(twog_cron_schedule_log)
-    File.open(twog_cron_schedule_file, 'w') {|f| f.write(twog_cron_schedule_content) } if ["Y","y",""].include?(answer.chomp)
 
-    cron_options = {:file => twog_cron_schedule_file, :identifier => twog_cron_identifier, :update => true}
+    File.open(twog_cron_schedule_log, 'w') { |f| f.write('') } unless File.exist?(twog_cron_schedule_log)
+    if ['Y', 'y', ''].include?(answer.chomp)
+      File.open(twog_cron_schedule_file, 'w') do |f|
+        f.write(twog_cron_schedule_content)
+      end
+    end
+
+    cron_options = { file: twog_cron_schedule_file, identifier: twog_cron_identifier, update: true }
     Whenever::CommandLine.execute(cron_options)
     exit 0
   end
-  
-  opts.on("--cronrm", "Remove twog crontab job") do
-    File.open(twog_cron_schedule_file, 'w') {|f| f.write("") }
-    cron_options = {:file => twog_cron_schedule_file, :identifier => twog_cron_identifier, :update => true}
+
+  opts.on('--cronrm', 'Remove twog crontab job') do
+    File.open(twog_cron_schedule_file, 'w') { |f| f.write('') }
+    cron_options = { file: twog_cron_schedule_file, identifier: twog_cron_identifier, update: true }
     Whenever::CommandLine.execute(cron_options)
-    puts "Twog cron job removed successfully"
+    puts 'Twog cron job removed successfully'
     exit 0
   end
 
-  opts.on("-o", "--output", "View the blog posts that will be tweeted") do
-    posts = get_posts_to_tweet(get_conf(twog_conf_file)) 
-    puts "No posts to tweet" if posts.length == 0
-    posts.each {|post| puts "#{post.title} (#{Time.parse(post.date.to_s)})"; puts "#{post.link}" }
+  opts.on('-o', '--output', 'View the blog posts that will be tweeted') do
+    posts = get_posts_to_tweet(get_conf(twog_conf_file))
+    puts 'No posts to tweet' if posts.length.zero?
+    posts.each { |post| puts "#{post.title} (#{Time.parse(post.date.to_s)})"; puts post.link.to_s }
     exit 0
   end
 
-  opts.on("-c", "--conf", "Create default conf file") do
+  opts.on('-c', '--conf', 'Create default conf file') do
     conf_file_contents = <<-EOS
   rss_feed: 'http://url.com/feed.rss'
   consumer_key: 'consumer key'
@@ -85,18 +91,18 @@ opts = OptionParser.new do |opts|
   last_blog_post_tweeted:
     EOS
 
-    FileUtils.mv(legacy_conf_file_name, twog_conf_file) if File.exists?(legacy_conf_file_name)
-    if File.exists?(twog_conf_file)
-      puts "#{twog_conf_file} already exists"     
-      exit 0     
+    FileUtils.mv(legacy_conf_file_name, twog_conf_file) if File.exist?(legacy_conf_file_name)
+    if File.exist?(twog_conf_file)
+      puts "#{twog_conf_file} already exists"
+      exit 0
     end
 
-    File.open(twog_conf_file, 'w') {|f| f.write(conf_file_contents) } 
+    File.open(twog_conf_file, 'w') { |f| f.write(conf_file_contents) }
     puts "Default configuration file created at #{twog_conf_file}"
     exit 0
   end
-  
-  opts.on("-h","-?","--help", "Display help") do
+
+  opts.on('-h', '-?', '--help', 'Display help') do
     puts opts
     exit 0
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Twog
   module RssEntryToTwogPostMapper
     def map(rss_entries)
